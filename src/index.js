@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import ReactDOM from "react-dom";
 
 import "./global.css";
@@ -7,26 +7,25 @@ import Button from "./components/Button";
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [authorized, setAuthorized] = useState(true);
-  const [pageLoaded, setPageLoaded] = useState(false);
+  const [authorized, setAuthorized] = useState(false);
 
-  const getAuthorization = () => {
+  const getAuthorization = useCallback(() => {
     return new Promise(() => {
       setTimeout(() => {
-        if (1 > 0.5) {
+        if (Math.random() > 0.5) {
           setLoading(false);
+          setAuthorized(true);
         } else {
           setLoading(false);
           setAuthorized(false);
         }
       }, 2000);
     });
-  };
+  }, []);
 
   useEffect(() => {
-    pageLoaded && getAuthorization();
-    setPageLoaded(true);
-  }, [pageLoaded]);
+    getAuthorization();
+  }, [getAuthorization]);
 
   return loading ? <Loader /> : !authorized ? "Não autorizado" : <Button />;
 }
