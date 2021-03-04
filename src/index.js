@@ -44,7 +44,7 @@ function App() {
           setLoading(false);
           setNoAuthorized(true);
         }
-      }, 1000);
+      }, 4000);
     });
   };
 
