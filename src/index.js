@@ -2,49 +2,24 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 import "./global.css";
-import loader from "./img/loader.gif";
+import Loader from "./components/Loader";
+import Button from "./components/Button";
 
 function App() {
-  const [disabled, setDisabled] = useState(false);
-  const [timer, setTimer] = useState(10);
-  const [textIndicator, setTextIndicator] = useState("Requisitar Ativação");
   const [loading, setLoading] = useState(true);
-  const [noAuthorized, setNoAuthorized] = useState(false);
+  const [authorized, setAuthorized] = useState(true);
   const [pageLoaded, setPageLoaded] = useState(false);
-
-  const sendRequest = () => {
-    return new Promise((resolve) => {
-      setTextIndicator("Carregando...");
-      setTimeout(resolve, 1000);
-    });
-  };
-
-  const handleClick = () => {
-    sendRequest().then(() => {
-      setTextIndicator("por favor aguarde...");
-      setDisabled(true);
-      const cowntdown = setInterval(function () {
-        setTimer((prev) => prev - 1);
-      }, 1000);
-      setTimeout(() => {
-        setTextIndicator("Requisitar ativação");
-        clearInterval(cowntdown);
-        setDisabled(false);
-        setTimer(10);
-      }, 10000);
-    });
-  };
 
   const getAuthorization = () => {
     return new Promise(() => {
       setTimeout(() => {
-        if (Math.random() > 0.5) {
+        if (1 > 0.5) {
           setLoading(false);
         } else {
           setLoading(false);
-          setNoAuthorized(true);
+          setAuthorized(false);
         }
-      }, 4000);
+      }, 2000);
     });
   };
 
@@ -54,20 +29,7 @@ function App() {
   }, [pageLoaded]);
 
   return (
-    <>
-      {loading ? (
-        <img src={loader} width="50" alt="" />
-      ) : !noAuthorized ? (
-        <>
-          <button disabled={disabled} onClick={() => handleClick()}>
-            {textIndicator}
-          </button>
-          {disabled && timer}
-        </>
-      ) : (
-        "Não autorizado"
-      )}
-    </>
+    <>{loading ? <Loader /> : !authorized ? "Não autorizado" : <Button />}</>
   );
 }
 

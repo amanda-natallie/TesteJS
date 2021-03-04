@@ -9,32 +9,5 @@ body {
   justify-content: center;
   height: 100vh;
   background: #f1f2f3;
-}
-
-button {
-  width: 350px;
-  margin: 0 auto;
-  padding: 5px 10px;
-  cursor: pointer;
-  background: #e78c45;
-  position: relative;
-}
-
-button:after {
-  content: "";
-  height: 0;
-  width: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  border: 2px solid #e78c45;
-  transition: all 0.5s ease-in-out;
-  z-index: -10;
-}
-
-button::hover:after {
-  height: calc(100% + 30px);
-  width: calc(100% + 30px);
-  top: -15px;
-  left: -15px;
+  flex-direction: column;
 }

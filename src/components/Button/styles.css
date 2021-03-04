@@ -1,0 +1,30 @@
+button {
+  border: 0;
+  outline: none;
+  width: 350px;
+  margin: 0 auto;
+  padding: 15px 10px;
+  cursor: pointer;
+  background: #0dc5c1;
+  position: relative;
+  color: #fff;
+}
+
+button:after {
+  content: "";
+  border: 2px solid #0dc5c1;
+  transition: all 0.5s ease-in-out;
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -10;
+}
+
+button:hover:after {
+  height: calc(100% + 30px);
+  width: calc(100% + 30px);
+  top: -15px;
+  left: -15px;
+}
