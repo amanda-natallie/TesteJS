@@ -1,8 +1,20 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.timer {
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
 button {
   border: 0;
   outline: none;
   width: 350px;
-  margin: 0 auto;
+  margin: 0px auto;
   padding: 15px 10px;
   cursor: pointer;
   background: #0dc5c1;
@@ -23,8 +35,17 @@ button:after {
 }
 
 button:hover:after {
-  height: calc(100% + 30px);
-  width: calc(100% + 30px);
-  top: -15px;
-  left: -15px;
+  height: calc(100% + 5px);
+  width: calc(100% + 5px);
+  top: -5px;
+  left: -5px;
+}
+
+button:disabled {
+  background: #848484;
+  cursor: not-allowed;
+}
+
+button:disabled:hover:after {
+  display: none;
 }

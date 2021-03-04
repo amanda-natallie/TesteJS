@@ -28,9 +28,7 @@ function App() {
     setPageLoaded(true);
   }, [pageLoaded]);
 
-  return (
-    <>{loading ? <Loader /> : !authorized ? "Não autorizado" : <Button />}</>
-  );
+  return loading ? <Loader /> : !authorized ? "Não autorizado" : <Button />;
 }
 
 ReactDOM.render(

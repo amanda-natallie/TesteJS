@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./styles.css";
+import Loader from "../Loader";
 
 const Button = () => {
   const [disabled, setDisabled] = useState(false);
@@ -15,7 +16,7 @@ const Button = () => {
 
   const handleClick = () => {
     sendRequest().then(() => {
-      setTextIndicator("por favor aguarde...");
+      setTextIndicator("Por favor aguarde...");
       setDisabled(true);
       const cowntdown = setInterval(function () {
         setTimer((prev) => prev - 1);
@@ -30,10 +31,17 @@ const Button = () => {
   };
 
   return (
-    <button disabled={disabled} onClick={() => handleClick()}>
-      {textIndicator}
-      {disabled && timer}
-    </button>
+    <div className="wrapper">
+      {disabled && (
+        <>
+          <Loader />
+          <p className="timer">{timer}</p>
+        </>
+      )}
+      <button disabled={disabled} onClick={() => handleClick()}>
+        {textIndicator}
+      </button>
+    </div>
   );
 };
 
